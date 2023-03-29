@@ -22,7 +22,6 @@ function verificar() {
             } else {
                 img.setAttribute('src', 'imagens/h4-500.png')
             }
-
         } else if (fsex[1].checked) {
             gênero = 'Mulher'
             if (idade >= 0 && idade < 10) {
