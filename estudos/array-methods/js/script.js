@@ -6,7 +6,7 @@ const data = [
     { name: "Érica", age: 16, salary: 0, driverLicense: false},
 ];
 
-// 1 - Reverse
+// 1 - reverse
 const reverseData = data.reverse()
 
 console.log(reverseData);
