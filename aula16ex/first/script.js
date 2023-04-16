@@ -1,48 +1,61 @@
-let num = window.document.getElementById('fnum')
-let lis = window.document.getElementById('flista')
-let res = window.document.getElementById('res')
-let vetor = []
-let c = 0
-let d = 0
-let contador = 0
-let soma = 0
+let num = document.querySelector('input#fnum')
+let lista = document.querySelector('select#flista')
+let res = document.querySelector('div#res')
+let valores = []
+
+function isNumero(n) {
+    if(Number(n) >= 1 && Number(n) <= 100) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function inLista(n, l) {
+    if (l.indexOf(Number(n)) != -1) {
+        return true
+    } else {
+        return false
+    }
+}
 
 function adicionar() {
-    let n = Number(num.value)
-    res.innerHTML = ''
-    d = 0
-    if (num.length == 0 || n < 1 || n > 100) {
-        window.alert('[ERRO], digite um valor válido')
-    } else if (vetor.indexOf(n) != -1) {
-        window.alert('Não repita os valores!!!')
+    if(isNumero(num.value) && !inLista(num.value, valores)) {
+        valores.push(Number(num.value))
+        let item = document.createElement('option')
+        item.text = `Valor ${num.value} foi adicionado`
+        lista.appendChild(item)
+        res.innerHTML = ''
     } else {
-        vetor.push(n)
-        item = document.createElement('option')
-        item.text = `O valor ${vetor[c]} foi adicionado`
-        lis.appendChild(item)
-        c++
+        window.alert('Valor inválido ou já encontrado na lista')
     }
-    return vetor
+    num.value=''
+    num.focus()
 }
 
 function finalizar() {
-    let n = Number(num.value)
-    vetor.sort()
-    let length = vetor.length
-    while (d <= vetor.length) {
-        if (contador == 0) {
-            contador = vetor[d]
-        } else if (vetor[d]){
+    if (valores.length == 0) {
+        window.alert('Adicione valores antes de finalizar')
+    } else {
+        let tot = valores.length
+        let maior = valores[0]
+        let menor = valores[0]
+        let soma = 0
+        let media = 0
+        for(let pos in valores) {
+            soma += valores[pos]
+            if (valores[pos] > maior) {
+                maior = valores[pos]
+            } if (valores[pos] < menor) {
+                menor = valores[pos]
+            }
         }
-        soma += vetor[d]
-        d++
+        media = soma / tot
+        res.innerHTML = ''
+        res.innerHTML += `<p>Ao todo, temos ${tot} números cadastrados</p>`
+        res.innerHTML += `<p>O maior valor informado foi ${maior}</p>`
+        res.innerHTML += `<p>O menor valor informado foi ${menor}</p>`
+        res.innerHTML += `<p>Somando todos os valores, temos ${soma}</p>`
+        res.innerHTML += `<p>A média dos valores digitados é ${media}`
     }
-    let media = soma / vetor.length
-    res.innerHTML = `Ao todo, temos ${length} números cadastrados.
-    <br> O maior valor informado foi ${vetor[length]}
-    <br> O menor valor informado foi ${vetor[0]}
-    <br> Somando todos os valores, temos ${soma.value}
-    <br> A média dos valores digitados é ${media}
-    <br> ${vetor}
-    `
 }
