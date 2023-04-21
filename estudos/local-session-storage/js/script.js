@@ -37,4 +37,29 @@ const n = sessionStorage.getItem("number");
 
 console.log(n);
 
+// sessionStorage.removeItem("number");
+
+sessionStorage.clear();
+
+// 9 - salvar objeto
+
+const person = {
+    name: "Matheus",
+    age: 31,
+    job: "Programmer",
+};
+
+// localStorage.setItem("person", person);
+
+localStorage.setItem("person", JSON.stringify(person));
+
+const getPerson = localStorage.getItem("person");
+
+console.log(getPerson);
+
+const personObject = JSON.parse(getPerson);
+
+console.log(typeof personObject);
+
+console.log(personObject.job);
 
