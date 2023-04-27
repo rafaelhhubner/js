@@ -1,16 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import Evento from "./components/Evento"
-import Form from "./components/Form"
+import Condicional from "./components/Condicional"
+
 
 function App() {
   const nome = "Maria"
 
   return (
       <div className="App">   
-        <h1>Testando CSS</h1>
-        <Evento />
-        <Form />
+        <h1>Renderização Condicional</h1>
+        <Condicional />
       </div>
   )
 }
